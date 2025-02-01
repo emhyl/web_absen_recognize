@@ -76,13 +76,15 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'sapdesp.my.id',
-	'username' => 'saps8147__test',
-	'password' => 'Database_1234567890',
-	'database' => 'saps8147_db_test',
-	// 'username' => 'absens19_user_absen',
+	// 'hostname' => 'sapdesp.my.id',
+	// 'username' => 'saps8147__test',
 	// 'password' => 'Database_1234567890',
-	// 'database' => 'absens19_absen',
+	// 'database' => 'saps8147_db_test',
+
+	'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => '',
+	'database' => 'recognize',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

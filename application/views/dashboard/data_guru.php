@@ -9,13 +9,13 @@
         </nav>
     </div>
 
-    <div class="resume-section-content ">
+    <div class="resume-section-content p-3" style="background: linear-gradient(to bottom, #fff, #e9ecef);">
         <h2 class="mb-3">Data Guru / Staf</h2>
 
 
 
         <div class="card">
-            <div class="card-header">
+            <div class="card-header bg-primary text-white">
                 Tabel Guru / Staf
             </div>
             <div class="card-body">
@@ -50,10 +50,6 @@
                                                 <input required type="text" name="nip" class="form-control" id="nip">
                                             </div>
                                             <div class="mb-3">
-                                                <label for="img" class="form-label">Face recognize</label>
-                                                <input required type="file" name="image" class="form-control" id="img">
-                                            </div>
-                                            <div class="mb-3">
                                                 <label for="password" class="form-label">Password</label>
                                                 <input required type="text" name="password" class="form-control" id="password">
                                             </div>
@@ -69,7 +65,6 @@
                     </div>
 
                 </div>
-
 
                 <div class="table-responsive">
                     <table class="table table-bordered">
@@ -111,8 +106,12 @@
                                                                 <input type="text" name="nip" class="form-control" id="nip" value="<?= $guru->nip; ?>">
                                                             </div>
                                                             <div class="mb-3">
-                                                                <label for="img" class="form-label">Face recognize</label>
-                                                                <input type="file" name="image" class="form-control" id="img" value="<?= $guru->nip; ?>">
+                                                                <label for="username" class="form-label">Username</label>
+                                                                <input type="text" name="username" class="form-control" id="username" value="<?= $guru->username; ?>">
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="password" class="form-label">Password</label>
+                                                                <input type="password" name="password" class="form-control" id="password" value="<?= $guru->password; ?>">
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
@@ -135,6 +134,10 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <img src="<?= base_url("assets/face_img/" . $guru->face_recognize) ?>" class="img-fluid" alt="...">
+
+                                                        <div class="mt-3">
+                                                            <a href="<?= base_url('dashboard/data_guru/edit_face/' . $guru->id_guru) ?>">Edit face</a>
+                                                        </div>
                                                     </div>
 
                                                 </div>
@@ -159,3 +162,11 @@
 
     </div>
 </section>
+<!-- <script src="https://stardemoapps.my.id/my_code/script_take_picture.js"></script>
+<script>
+    startCamera();
+    let button = document.getElementById('capture');
+    button.addEventListener('click', function(e) {
+        console.log(getRaw(e.target));
+    });
+</script> -->

@@ -8,8 +8,8 @@
         </nav>
     </div>
 
-    <div class="resume-section-content ">
-        <h2 class="mb-3">Data Absen</h2>
+    <div class="resume-section-content p-3" style="background: linear-gradient(to bottom, #ffffff, #e9ecef);">
+        <h2 class="mb-1">Data Absen</h2>
 
         <div class="d-flex flex-column flex-md-row justify-content-between mb-1">
             <div class="flex-grow-1">
@@ -20,7 +20,7 @@
         </div>
 
         <div class="card">
-            <div class="card-header">
+            <div class="card-header bg-primary text-white">
                 Table absen
             </div>
             <div class="card-body">

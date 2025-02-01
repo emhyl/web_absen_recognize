@@ -9,15 +9,15 @@
         </nav>
     </div>
 
-    <div class="resume-section-content ">
+    <div class="resume-section-content p-3" style="background: linear-gradient(to bottom, #fff, #e9ecef);">
         <h2 class="mb-3">Laporan</h2>
 
         <div class="row">
 
             <div class="col-12">
                 <div class="card mb-3">
-                    <div class="card-header">
-                        Tabel Jam Absen
+                    <div class="card-header bg-primary text-white">
+                        Tabel Laporan
                     </div>
                     <div class="card-body">
 
@@ -63,7 +63,7 @@
                         </div>
 
                         <div class="table-responsive">
-                            <table class="table-bordered" cellpadding="2">
+                            <table class="table-bordered table text-nowrap" cellpadding="2">
                                 <tr>
                                     <th>Nama</th>
                                     <th>NIP</th>

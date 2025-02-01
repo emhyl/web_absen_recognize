@@ -20,6 +20,10 @@ class Home extends CI_Controller
 		$this->load->view('template/dashboard/footer');
 	}
 
+	public function test()
+	{
+		$this->load->view('guru/index');
+	}
 	public function logOut()
 	{
 		$this->session->sess_destroy();

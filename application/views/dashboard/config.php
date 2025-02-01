@@ -9,14 +9,14 @@
         </nav>
     </div>
 
-    <div class="resume-section-content ">
+    <div class="resume-section-content p-3" style="background: linear-gradient(to bottom, #fff, #e9ecef);">
         <h2 class="mb-3">Konfigurasi</h2>
 
         <div class="row">
 
             <div class="col-md-5">
                 <div class="card mb-3">
-                    <div class="card-header">
+                    <div class="card-header bg-primary text-white">
                         Tabel Jam Absen
                     </div>
                     <div class="card-body">
@@ -57,7 +57,7 @@
             <div class="col-md-7">
 
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header bg-primary text-white">
                         Tabel Area
                     </div>
                     <div class="card-body">

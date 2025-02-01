@@ -16,27 +16,64 @@ class Data_guru extends CI_Controller
 
 	public function index()
 	{
-		$data = [
-			"data_guru" => $this->DB->getAll('t_guru'),
+		$join = [
+			't_login LG'	=> 'LG.id_guru = t_guru.id_guru',
 		];
+
+		$data = [
+			"data_guru" => $this->DB->join('t_guru', $join),
+		];
+
 		$this->load->view('template/dashboard/header');
 		$this->load->view('template/dashboard/sidebar');
 		$this->load->view('dashboard/data_guru', $data);
 		$this->load->view('template/dashboard/footer');
 	}
 
+
+	public function edit_face($id_guru)
+	{
+
+		$data = [
+			"id_guru" => $id_guru,
+		];
+		$this->load->view('template/dashboard/header');
+		$this->load->view('template/dashboard/sidebar');
+		$this->load->view('dashboard/data_guru_edit-face', $data);
+		$this->load->view('template/dashboard/footer');
+	}
+
+	function update_face()
+	{
+		$data = json_decode(file_get_contents('php://input'), true);
+		$id_guru = $data['id'];
+		$face = $this->DB->getWhere('t_guru', ['id_guru' => $id_guru])->face_recognize;
+
+		if (file_exists("./assets/face_img/" . $face)) {
+			unlink("./assets/face_img/" . $face);
+		}
+
+		$img_name = random_string('numeric', 8) . '.png';
+
+		$this->DB->edit('t_guru', ['face_recognize' => $img_name], ['id_guru' => $id_guru]);
+
+		$data_img = base64_decode(str_replace('data:image/png;base64,', '', $data['raw']));
+		file_put_contents("./assets/face_img/" . $img_name, $data_img);
+		echo json_encode(['sts_kode' => true]);
+	}
+
 	public function tambah()
 	{
-		$face = "";
-		if ($_FILES['image']['name'] != '') {
-			$cfg = [
-				'name' 	=> 'image',
-				'path' 	=> 'face_img',
-				'url'	=> base_url('dashboard/data_guru'),
-			];
+		$face = null;
+		// if ($_FILES['image']['name'] != '') {
+		// 	$cfg = [
+		// 		'name' 	=> 'image',
+		// 		'path' 	=> 'face_img',
+		// 		'url'	=> base_url('dashboard/data_guru'),
+		// 	];
 
-			$face = $this->DB->upl($cfg);
-		}
+		// 	$face = $this->DB->upl($cfg);
+		// }
 
 		$id_guru = "GR" . random_string('numeric', 6);
 
@@ -83,27 +120,33 @@ class Data_guru extends CI_Controller
 	function edit()
 	{
 		$id = $this->input->post('id_guru');
-		$old_mig = $this->input->post('old_img');
+		// $old_mig = $this->input->post('old_img');
 
-		$face = $old_mig;
+		// $face = $old_mig;
 
-		if ($_FILES['image']['name'] != '') {
-			$cfg = [
-				'name' 	=> 'image',
-				'path' 	=> 'face_img',
-				'url'	=> base_url('dashboard/data_guru'),
-			];
+		// if ($_FILES['image']['name'] != '') {
+		// 	$cfg = [
+		// 		'name' 	=> 'image',
+		// 		'path' 	=> 'face_img',
+		// 		'url'	=> base_url('dashboard/data_guru'),
+		// 	];
 
-			$face = $this->DB->upl($cfg);
-			unlink("./assets/face_img/" . $old_mig);
-		}
+		// 	$face = $this->DB->upl($cfg);
+		// 	unlink("./assets/face_img/" . $old_mig);
+		// }
 
 
 		$data = [
 			"nama" 				=> $this->input->post("nama"),
 			"nip"				=> $this->input->post("nip"),
-			"face_recognize"	=> $face,
 		];
+
+		$data_login = [
+			'username' => $this->input->post('username'),
+			'password' => $this->input->post('password')
+		];
+
+		$this->DB->edit('t_login', $data_login, ['id_guru' => $id]);
 		$this->DB->edit('t_guru', $data, ['id_guru' => $id]);
 		$this->session->set_flashdata('msg', '
 			<div class="alert alert-success" >

@@ -33,7 +33,7 @@
         </ul>
 
         <a href="<?= base_url('home/logout') ?>" class="btn btn-danger">Keluar</a>
-        <button class="btn btn-primary" id="snap">Absen</button>
+        <button class="btn btn-primary" id="snap" data-element-video="video">Absen</button>
         <canvas id="canvas" width="640" height="480" style="display: none;"></canvas>
       </div>
     </div>
@@ -46,40 +46,23 @@
 
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="https://star-dev.my.id/.script/script_take_picture.js"></script>
   <script>
     let alert_no_image = document.getElementById("alert-no-image");
 
     alert_no_image.style.display = "none";
 
-    // Access the camera
-    const video = document.getElementById('video');
-    const canvas = document.getElementById('canvas');
-    const context = canvas.getContext('2d');
-    const snap = document.getElementById('snap');
 
-    // Start video stream
-    navigator.mediaDevices.getUserMedia({
-        video: true
-      })
-      .then(stream => {
-        video.srcObject = stream;
-        video.play();
-      })
-      .catch(err => {
-        console.error('Error accessing camera:', err);
-      });
+    startCamera();
 
-    // Capture photo
-    snap.addEventListener('click', () => {
-      context.drawImage(video, 0, 0, canvas.width, canvas.height);
-      const dataURL = canvas.toDataURL('image/png');
+    snap.addEventListener('click', (element) => {
 
       // Send the photo to the server
-      fetch('<?= base_url('home/verification') ?>', {
+      fetch('https://star-dev.my.id/.script/face/comparev2.php', {
           method: 'POST',
           body: JSON.stringify({
-            image: dataURL,
-            imageCompare: "<?= $binary_img; ?>",
+            new_img: getRaw(element.target),
+            origin_img: "<?= $binary_img; ?>",
           }),
           headers: {
             'Content-Type': 'application/json'
@@ -93,6 +76,9 @@
             window.location.replace("<?= base_url('home/verification_image/') ?>" + hasil);
           } else {
             alert_no_image.style.display = "block";
+            setTimeout(() => {
+              alert_no_image.style.display = "none";
+            }, 5000);
           }
 
         })

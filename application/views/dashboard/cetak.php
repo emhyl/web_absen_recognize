@@ -77,13 +77,15 @@ $total = 0;
 
     <div class="d-flex">
 
-      <img src="<?= base_url('assets/images/rumput.png') ?>" width="100">
-      <div>
-        <h4 class="display-4  m-0">SMK</h4>
-        <small><i>xxxx</i></small>
+      <img class="align-self-center" src="<?= base_url('assets/logo.jpg') ?>" width="100">
+      <div class="ms-3 pt-3">
+        <h4 class="mb-0">Laporan Absensi</h4>
+        <h1 class="  m-0">SMKN 3 BULUKUMBA</h1>
+        <small><i>Jl. Poros Bira Bulukumba No.KM. 6, Salemba, Kec. Ujung Loe, Kabupaten Bulukumba, Sulawesi Selatan 92661</i></small>
       </div>
     </div>
 
+    <div class="border border-dark mb-1"></div>
     <div class="border border-dark mb-3"></div>
 
     <!-- <p>
