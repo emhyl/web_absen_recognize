@@ -9,7 +9,7 @@
     </div>
 
     <div class="resume-section-content p-3" style="background: linear-gradient(to bottom, #ffffff, #e9ecef);">
-        <h2 class="mb-1">Data Absen</h2>
+        <h2 class="mb-1">Data Absensi</h2>
 
         <div class="d-flex flex-column flex-md-row justify-content-between mb-1">
             <div class="flex-grow-1">
