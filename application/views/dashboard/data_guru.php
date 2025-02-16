@@ -73,6 +73,7 @@
                                 <th scope="col">No</th>
                                 <th scope="col">Nama</th>
                                 <th scope="col">NIP</th>
+                                <th scope="col">Pangkat/GOL.</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
@@ -82,6 +83,7 @@
                                     <td scope="row"><?= $no + 1; ?></td>
                                     <td scope="row"><?= $guru->nama; ?></td>
                                     <td scope="row"><?= $guru->nip; ?></td>
+                                    <td scope="row"><?= $guru->jabatan; ?></td>
                                     <td>
                                         <a onclick="return confirm('Hapus??')" href="<?= base_url('dashboard/data_guru/hapus/' . $guru->id_guru) ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</a>
                                         <button data-bs-toggle="modal" data-bs-target="#modalEdit_<?= $guru->id_guru; ?>" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i> Edit</button>
@@ -105,6 +107,11 @@
                                                                 <label for="nip" class="form-label">NIP</label>
                                                                 <input type="text" name="nip" class="form-control" id="nip" value="<?= $guru->nip; ?>">
                                                             </div>
+                                                            <div class="mb-3">
+                                                                <label for="pangkat" class="form-label">Pangkat / GOL.</label>
+                                                                <input type="text" name="jabatan" class="form-control" id="pangkat" value="<?= $guru->jabatan; ?>">
+                                                            </div>
+
                                                             <div class="mb-3">
                                                                 <label for="username" class="form-label">Username</label>
                                                                 <input type="text" name="username" class="form-control" id="username" value="<?= $guru->username; ?>">

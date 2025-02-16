@@ -229,6 +229,23 @@ class DB extends CI_Model
         }
     }
 
+    public function getAbsen2($tgl)
+    {
+        $data = [];
+        foreach ($this->getAll('t_guru') as $i => $val) {
+            $sts = $this->getWhere('t_absen', ['id_guru' => $val->id_guru, 'tgl_absen' => $tgl]);
+            $data[$i] = (object) [
+                "id_guru" => $val->id_guru,
+                "nama_guru" => $val->nama,
+                "nip" => $val->nip,
+                "pangkat" => $val->jabatan,
+                "sts_absen" => ($sts) ? $sts->sts_absen : '-',
+                "tgl_absen" => $tgl
+            ];
+        }
+
+        return $data;
+    }
     public function getAbsen($bulan, $tahun)
     {
         $data = [];

@@ -16,34 +16,30 @@ class Laporan extends CI_Controller
 
 	public function index()
 	{
-		$bulan = date('m');
-		$tahun = date('Y');
+		$tgl = date('d-m-Y');
 
-		if ($this->input->post('bulan')) {
-			$bulan = $this->input->post('bulan');
-			$tahun = $this->input->post('tahun');
+
+		if ($this->input->post('tgl')) {
+			$tgl = $this->input->post('tgl');
 		}
 
 		$data = [
-			"data" => $this->DB->getAbsen($bulan, $tahun),
-			"bulan" => $bulan,
-			"tahun" => $tahun,
-			'jml_hari' => cal_days_in_month(CAL_GREGORIAN, $bulan, $tahun),
+			"data" 	=> $this->DB->getAbsen2($tgl),
+			"tgl" 	=> $tgl,
 		];
-
 		$this->load->view('template/dashboard/header');
 		$this->load->view('template/dashboard/sidebar');
-		$this->load->view('dashboard/laporan', $data);
+		$this->load->view('dashboard/laporan-v2', $data);
 		$this->load->view('template/dashboard/footer');
 	}
 
-	public function cetak($bulan, $tahun)
+	public function cetak($tgl)
 	{
 
 		// Get the current date
 		$data = [
-			"data" => $this->DB->getAbsen($bulan, $tahun),
-			'jml_hari' => cal_days_in_month(CAL_GREGORIAN, $bulan, $tahun),
+			"data" => $this->DB->getAbsen2($tgl),
+			"tgl" => $tgl
 		];
 
 		$this->load->view('dashboard/cetak', $data);

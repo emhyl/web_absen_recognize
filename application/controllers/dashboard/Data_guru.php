@@ -139,6 +139,7 @@ class Data_guru extends CI_Controller
 		$data = [
 			"nama" 				=> $this->input->post("nama"),
 			"nip"				=> $this->input->post("nip"),
+			"jabatan"				=> $this->input->post("jabatan"),
 		];
 
 		$data_login = [

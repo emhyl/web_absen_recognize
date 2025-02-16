@@ -29,14 +29,18 @@ $total = 0;
   <style type="text/css">
     td {
 
-      font-size: 16px;
+      font-size: 14px;
 
     }
 
     th {
 
-      font-size: 14px;
+      font-size: 12px;
 
+    }
+
+    body {
+      margin: 1cm 4cm 0cm 5cm;
     }
 
     @media print {
@@ -58,7 +62,8 @@ $total = 0;
       }
 
       body {
-        margin: 1cm 1cm 0cm 1cm;
+        margin: 1cm 2cm 0cm 2cm;
+        background-color: #333;
       }
 
     }
@@ -77,40 +82,57 @@ $total = 0;
 
     <div class="d-flex">
 
-      <img class="align-self-center" src="<?= base_url('assets/logo.jpg') ?>" width="100">
-      <div class="ms-3 pt-3">
-        <h4 class="mb-0">Laporan Absensi</h4>
-        <h1 class="  m-0">SMKN 3 BULUKUMBA</h1>
-        <small><i>Jl. Poros Bira Bulukumba No.KM. 6, Salemba, Kec. Ujung Loe, Kabupaten Bulukumba, Sulawesi Selatan 92661</i></small>
+      <img class="align-self-center" src="<?= base_url('assets/logo_sulsel.png') ?>" width="90" height="90">
+      <div class="ms-3 text-center pt-3">
+        <h5 class="mb-0">PEMERINTAH PROVINSI SULAWESI SELATAN</h5>
+        <h5 class="  m-0">DINAS PENDIDIKAN </h5>
+        <h5 class="  m-0">UPT.SMKN 3 BULUKUMBA</h5>
+        <small style=""><i>Jl.Poros Lembang-Bira KM. 6 Telp.: 085255961066, Bulukumba, kode pos 92661
+            Web : www.smkn3bulukumba.sch.id , email : smknegeri3bulukumba@gmail.com</i></small>
       </div>
     </div>
 
     <div class="border border-dark mb-1"></div>
-    <div class="border border-dark mb-3"></div>
+    <h6 class=" text-center  mt-1 mb-3">DAFTAR HADIR UPACARA GURU & TENAGA KEPENDIDIKAN</h6>
+    <p>Hari/Tanggal: Senin, <?= date('d M Y', strtotime($tgl)) ?></p>
+    <!-- <div class="border border-dark mb-3"></div> -->
 
     <!-- <p>
       Data keselurusan laporan hasil penjualan CV.Sumber Laut</b>
     </p> -->
 
-    <table class="table-bordered" cellpadding="2">
+    <table class="table table-bordered" cellpadding="2">
       <tr>
-        <th class="">Nama</th>
-        <th>NIP</th>
-        <?php for ($jml = 1; $jml <= $jml_hari; $jml++) { ?>
-          <th><?= $jml; ?></th>
-        <?php } ?>
+        <th style="vertical-align: middle; text-align: center" rowspan="2" class="">No</th>
+        <th style="vertical-align: middle; text-align: center" rowspan="2" class="">Nama</th>
+        <th style="vertical-align: middle; text-align: center" rowspan="2">NIP</th>
+        <th style="vertical-align: middle; text-align: center" rowspan="2">Pangkat/Gol</th>
+        <th style="vertical-align: middle; text-align: center" rowspan="2">Hadir</th>
+        <th class="text-center" colspan="3">Keterangan</th>
       </tr>
-      <?php foreach ($data as $guru) { ?>
+      <tr>
+        <th class="text-center">Sakit</th>
+        <th class="text-center">Izin</th>
+        <th class="text-center">Tampa Keterangan</th>
+      </tr>
+      <?php foreach ($data as $no => $val) { ?>
         <tr>
-          <td><?= $guru->nama; ?></td>
-          <td><?= $guru->nip; ?></td>
-          <?php foreach ($guru->absen as $absen) { ?>
-            <?php if ($absen['nama_hari'] != "Sun") { ?>
-              <td><?= $absen['status']; ?></td>
-            <?php } else { ?>
-              <td class="bg-danger"></td>
-            <?php } ?>
-          <?php } ?>
+          <td><?= $no + 1; ?></td>
+          <td><?= $val->nama_guru; ?></td>
+          <td><?= $val->nip; ?></td>
+          <td><?= $val->pangkat; ?></td>
+          <td>
+            <?= ($val->sts_absen == 'h') ? '&#10004;' : '-' ?>
+          </td>
+          <td>
+            <?= ($val->sts_absen == 's') ? '&#10004;' : '-' ?>
+          </td>
+          <td>
+            <?= ($val->sts_absen == 'i') ? '&#10004;' : '-' ?>
+          </td>
+          <td>
+            <?= ($val->sts_absen == 'a') ? '&#10004;' : '-' ?>
+          </td>
         </tr>
       <?php } ?>
     </table>
