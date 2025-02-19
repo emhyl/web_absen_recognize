@@ -212,8 +212,8 @@ class Home extends CI_Controller
 			// if (true) {
 			$this->session->set_flashdata("location", "true");
 		} else {
-			$this->session->set_flashdata("location", "true");
-			// $this->session->set_flashdata("location", "false");
+			// $this->session->set_flashdata("location", "true");
+			$this->session->set_flashdata("location", "false");
 		}
 		redirect(base_url('home/login'));
 	}
