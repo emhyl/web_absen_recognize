@@ -24,7 +24,7 @@ const update_face = {
 			.then((response) => response.json())
 			.then((data) => {
 				if (data.sts_kode == true) {
-					window.location.href = "/recognize/dashboard/data_guru";
+					window.location.href = "/absensi/dashboard/data_guru";
 				}
 			})
 			.catch((error) => {
