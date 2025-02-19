@@ -28,15 +28,18 @@ class Home extends CI_Controller
 
 	public function login()
 	{
+
+		$data = [
+			'jam_absen' => $this->DB->getWhere('t_jam', ['id' => 1]),
+		];
 		if ($_REQUEST) {
 			$nip 		= $this->input->post('nip');
 			$password 	= $this->input->post('password');
 			$cek = $this->DB->getWhere('t_login', ['username' => $nip, 'password' => $password]);
 			if ($cek) {
-
 				$this->session->set_flashdata('success', '<meta http-equiv="refresh" content="2 url=' . base_url('home/absen') . '">');
 				$this->session->set_flashdata('msg', '
-					<div class="alert alert-success" >
+					<div class="alert alert-success" id="alert-login">
 						 Berhasil Login
 					</div>
 				');
@@ -53,7 +56,7 @@ class Home extends CI_Controller
 			}
 		}
 
-		$this->load->view('guru/login');
+		$this->load->view('guru/login', $data);
 	}
 
 	public function izin()
@@ -107,7 +110,7 @@ class Home extends CI_Controller
 
 					$add = $this->DB->add('t_absen', ['id_guru' => $cek->id_guru, 'tgl_absen' => $this->DB->tgl, 'jam_absen' => date('H:i', $this->DB->jam), 'sts_absen' => 's']);
 					$this->session->set_flashdata('msg', '
-					<div class="alert alert-success" >
+					<div class="alert alert-success" id="alert-login" >
 					Berhasil Login
 					</div>
 					');
@@ -202,6 +205,8 @@ class Home extends CI_Controller
 		$area_lat_max = $area->lat_max;
 		$area_long_min = $area->long_min;
 		$area_long_max = $area->long_max;
+		// var_dump($area);
+		// die();
 
 		if (($lat <= $area_lat_min && $lat >= $area_lat_max) && ($long >= $area_long_min && $long <= $area_long_max)) {
 			// if (true) {

@@ -46,26 +46,47 @@
 
       <?php if ($this->session->flashdata("location") == "true") { ?>
         <!-- Elemen yang ingin di center -->
-        <div class="shadow-sm py-3 px-5 mb-5 bg-body rounded">
-          <div class="text-center mb-4">
-            <a href="<?= base_url('home') ?>"><i class="bi bi-arrow-left"></i> Kembali</a>
-            <h1 class="mb-1">Login</h1>
-            <h6 class="text-muted">Silakan masukkan NIM dan Password</h6>
-          </div>
-          <hr>
-          <?= $this->session->flashdata("msg"); ?>
+        <div class="shadow py-3 px-5 mb-5 bg-body rounded">
 
-          <form action="<?= base_url('home/login') ?>" method="post">
-            <div class="mb-3">
-              <label for="nip" class="form-label">NIP</label>
-              <input type="text" class="form-control" id="nip" name="nip" aria-describedby="emailHelp">
+
+          <?php if ($this->DB->jam >= strtotime($jam_absen->min) && $this->DB->jam <= strtotime($jam_absen->max)) { ?>
+
+            <div class="text-center mb-4">
+              <a href="<?= base_url('home') ?>"><i class="bi bi-arrow-left"></i> Kembali</a>
+              <h1 class="mb-1">Login</h1>
+              <h6 class="text-muted">Silakan masukkan NIM dan Password</h6>
             </div>
-            <div class="mb-3">
-              <label for="password" class="form-label">Password</label>
-              <input type="password" class="form-control" id="password" name="password">
+            <hr>
+            <?= $this->session->flashdata("msg"); ?>
+
+            <form action="<?= base_url('home/login') ?>" method="post">
+              <div class="mb-3">
+                <label for="nip" class="form-label">NIP</label>
+                <input type="text" class="form-control" id="nip" name="nip" aria-describedby="emailHelp">
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password">
+              </div>
+              <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+          <?php } else { ?>
+
+            <div class="display-5">
+              <div class="text-center">
+                <i class="bi bi-alarm"></i>
+              </div>
+              <div>Belum Memasuki Jam Absen</div>
             </div>
-            <button type="submit" class="btn btn-primary">Login</button>
-          </form>
+            <div class="display-6 text-center border p-2 bg-light">
+              Jam absen :
+              <br>
+              mulai : <?= $jam_absen->min; ?>
+              <br>
+              selesai : <?= $jam_absen->max; ?>
+            </div>
+
+          <?php } ?>
 
         </div>
       <?php } else if ($this->session->flashdata("location") == "false") { ?>

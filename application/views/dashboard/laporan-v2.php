@@ -24,7 +24,7 @@
                         <form class="d-flex mb-3" action="<?= base_url('dashboard/laporan') ?>" method="post">
                             <div class="form-group me-1">
                                 <label for="exampleFormControlSelect1">Pilih Tanggal</label>
-                                <input type="date" name="tgl" value="<?= date('d/m/Y') ?>" class="form-control">
+                                <input type="date" name="tgl" value="<?= $tgl ?>" class="form-control">
                             </div>
 
                             <div class="form-group align-self-end">

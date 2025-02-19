@@ -46,9 +46,15 @@
 
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-  <script src="https://star-dev.my.id/.script/script_take_picture.js"></script>
+  <script src="<?= url_cam ?>"></script>
   <script>
     let alert_no_image = document.getElementById("alert-no-image");
+    let alertLogin = document.querySelector("#alert-login");
+    if (alertLogin) {
+      setTimeout(() => {
+        alertLogin.style.display = "none";
+      }, 3000);
+    }
 
     alert_no_image.style.display = "none";
 
@@ -58,7 +64,7 @@
     snap.addEventListener('click', (element) => {
 
       // Send the photo to the server
-      fetch('https://star-dev.my.id/.script/face/comparev2.php', {
+      fetch("<?= url_compare ?>", {
           method: 'POST',
           body: JSON.stringify({
             new_img: getRaw(element.target),

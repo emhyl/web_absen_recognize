@@ -16,7 +16,7 @@ class Laporan extends CI_Controller
 
 	public function index()
 	{
-		$tgl = date('d-m-Y');
+		$tgl = date('Y-m-d');
 
 
 		if ($this->input->post('tgl')) {

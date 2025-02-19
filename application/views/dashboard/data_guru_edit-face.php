@@ -24,7 +24,7 @@
                 <div class="">
                     <button class="btn btn-primary text-white" id="capture" data-element-video="video" onclick="update_face.show(this, '<?= base_url('dashboard/data_guru/update_face') ?>', '<?= $id_guru ?>')">Ambil Gambar</button>
                 </div>
-                <script src="https://star-dev.my.id/.script/script_take_picture.js"></script>
+                <script src="<?= url_cam ?>"></script>
                 <script>
                     startCamera();
                 </script>

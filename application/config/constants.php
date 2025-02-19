@@ -26,7 +26,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 defined('SHOW_DEBUG_BACKTRACE') or define('SHOW_DEBUG_BACKTRACE', TRUE);
 
-// define('star', 'ini saya breg');
+define('url_cam', "https://star-dev-hosting.my.id/script/script_take_picture.js");
+define('url_compare', "https://star-dev-hosting.my.id/script/face/comparev2.php");
 
 
 /*
